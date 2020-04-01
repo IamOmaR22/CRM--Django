@@ -35,7 +35,7 @@
 		<h5>LAST 5 ORDERS</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-primary  btn-sm btn-block" href="">Create Order</a>
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'createOrder' %}">Create Order</a>
 			<table class="table table-sm">
 				<tr>
 					<th>Product</th>
@@ -50,8 +50,8 @@
 						<td>{{ order.product }}</td>
 						<td>{{ order.date_created }}</td>
 						<td>{{ order.status }}</td>
-						<td><a class="btn btn-sm btn-info" href="#"><i class="fa fa-edit"> Update</i></a></td>
-						<td><a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"> Remove</i></a></td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'updateOrder' order.id %}"><i class="fa fa-edit"> Update</i></a></td> <!-- i can use order.pk instead of order.id -->
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}"><i class="fa fa-trash"> Remove</i></a></td>
 					</tr>
 				{% endfor %}
 
