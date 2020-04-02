@@ -10,7 +10,8 @@
 			<h5>Customer:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a>
+			<!-- <a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a> -->
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'createOrder' customer.id %}">Place Order</a>
 
 		</div>
 	</div>
