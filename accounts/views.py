@@ -7,8 +7,10 @@ from .filters import OrderFilter
 from django.contrib.auth.forms import UserCreationForm # django default form
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required # restricted user access
 
 # Create your views here.
+@login_required(login_url='login')
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
@@ -30,11 +32,15 @@ def home(request):
 
     return render(request, 'accounts/dashboard.html', context)
 
+
+@login_required(login_url='login')
 def products(request):
     products = Product.objects.all()
 
     return render(request, 'accounts/products.html', {'products':products})
 
+
+@login_required(login_url='login')
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
 
@@ -54,6 +60,7 @@ def customer(request, pk):
     return render(request, 'accounts/customer.html', context)
 
 
+@login_required(login_url='login')
 def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10) # Parent model and Child model
     customer = Customer.objects.get(id=pk)
@@ -73,6 +80,7 @@ def createOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 
+@login_required(login_url='login')
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
 
@@ -88,6 +96,7 @@ def updateOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 
+@login_required(login_url='login')
 def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
 
@@ -100,32 +109,40 @@ def deleteOrder(request, pk):
 
 
 def registerPage(request):
-    form = CreateUserForm()  # Now UserCreationForm will replace by CreateUserForm
+    if request.user.is_authenticated: # user is logged in
+        return redirect('home')
 
-    if request.method == 'POST':
-        form = CreateUserForm(request.POST)  # Now UserCreationForm will replace by CreateUserForm
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username') # To get the user
-            messages.success(request, 'Account was create for ' + user) # I put my user here with message
+    else:          # user is not logged in
+        form = CreateUserForm()  # Now UserCreationForm will replace by CreateUserForm
 
-            return redirect('login')
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)  # Now UserCreationForm will replace by CreateUserForm
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username') # To get the user
+                messages.success(request, 'Account was create for ' + user) # I put my user here with message
 
-    context = {'form':form}
-    return render(request, 'accounts/register.html', context)
+                return redirect('login')
+
+        context = {'form':form}
+        return render(request, 'accounts/register.html', context)
 
 
 def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.user.is_authenticated:
+        return redirect('home')
 
-        user = authenticate(request, username=username, password=password) # to check the user is in model/db or not.
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.info(request, 'Username or Password is Incorrect')
+    else:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password) # to check the user is in model/db or not.
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, 'Username or Password is Incorrect')
 
     context = {}
     return render(request, 'accounts/login.html', context)
