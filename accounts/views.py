@@ -126,7 +126,8 @@ def registerPage(request):
             username = form.cleaned_data.get('username') # to associated user with group
 
             group = Group.objects.get(name='customer')  # Query the groups
-            user.groups.add(group)
+            user.groups.add(group)  # Customer added in a group
+            Customer.objects.create(user=user) # assigning a customer user to signup
 
             messages.success(request, 'Account was create for ' + username) # to associated user with group
 
@@ -158,7 +159,15 @@ def logoutUser(request):
     return redirect('login')
 
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
 def userPage(request):
+    orders = request.user.customer.order_set.all()
 
-    context = {}
+    total_orders = orders.count()
+
+    delivered = orders.filter(status='Delivered').count()
+    pending = orders.filter(status='Pending').count()
+
+    context = {'orders':orders, 'total_orders':total_orders, 'delivered':delivered, 'pending':pending}
     return render(request, 'accounts/user.html', context)
