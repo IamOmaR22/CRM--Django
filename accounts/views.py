@@ -124,13 +124,7 @@ def registerPage(request):
         if form.is_valid():
             user = form.save() # to associated user with group
             username = form.cleaned_data.get('username') # to associated user with group
-
-            group = Group.objects.get(name='customer')  # Query the groups
-            user.groups.add(group)  # Customer added in a group
-            Customer.objects.create(user=user) # assigning a customer user to signup
-
             messages.success(request, 'Account was create for ' + username) # to associated user with group
-
             return redirect('login')
 
     context = {'form':form}
