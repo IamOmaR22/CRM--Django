@@ -20,11 +20,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="{% url 'products' %}">Products</a>
       </li>
       {% else %}
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="{% url 'account' %}">Settings</a>
       </li>
 
@@ -32,9 +32,27 @@
     </ul>
   </div>
 
-  <span id="hello-msg">Hello, {{request.user}}</span>
-  <span><a class="btn btn-sm btn-danger" href="{% url 'logout' %}">Logout</a></span>
+  <span>
+  <div class="container">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#myModal">Source Code</button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-body">
+            {% qr_from_text "https://github.com/IamOmaR22/Django_CRM" size=18 border=5 %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </span>
 
-  
+  <span id="hello-msg">Hello, {{request.user}}</span>
+  <span><a class="btn btn-sm btn-outline-danger" href="{% url 'logout' %}">Logout</a></span>
 
 </nav>
