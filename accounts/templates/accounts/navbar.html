@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load qr_code %}
 <style media="screen">
   #hello-msg{
     font-size: 18px;
@@ -34,5 +34,7 @@
 
   <span id="hello-msg">Hello, {{request.user}}</span>
   <span><a class="btn btn-sm btn-danger" href="{% url 'logout' %}">Logout</a></span>
+
+  
 
 </nav>
