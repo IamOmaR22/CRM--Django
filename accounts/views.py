@@ -180,3 +180,8 @@ def accountSettings(request):
 
     context = {'form':form}
     return render(request, 'accounts/account_settings.html', context)
+
+
+def sourceCode(request):
+
+    return render(request, 'accounts/source_code.html')
