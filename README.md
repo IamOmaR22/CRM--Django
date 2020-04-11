@@ -1,4 +1,4 @@
-# Django_CRM
+# Customer Relationship Management (CRM)
 ## CRM in Django and SQLite
 ### You can create Customer
 ### You can Place Order according to Customer
