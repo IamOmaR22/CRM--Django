@@ -139,3 +139,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sumaiyabinte580@gmail.com'
 EMAIL_HOST_PASSWORD = 'sumaiya1122334455binte'
+
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
