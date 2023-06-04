@@ -9,7 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous" />
-
+	<link rel="icon" type="image/x-icon" href="{% static 'images/crm.png' %}">
 	<style>
 		body,
 		html {
@@ -23,7 +23,8 @@
 			width: 350px;
 			margin-top: 50px;
 			margin-bottom: auto;
-			background: #c2f0ee;
+			background: #7CE5FD;
+			/* background: #c2f0ee; */
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -43,7 +44,12 @@
 		}
 
 		#form-title {
-			color: black;
+			color: #743A79;
+			/* color: black; */
+			/* border-bottom: #743A79; */
+			border-bottom: 3px solid #3B47A1;
+			width: 250px;
+			text-align: center;
 		}
 
 		.login_btn {
@@ -76,7 +82,8 @@
 		}
 
 		#messages {
-			background-color: grey;
+			background-color: #3B47A1;
+			/* background-color: grey; */
 			color: #fff;
 			padding: 10px;
 			margin-top: 10px;
@@ -92,10 +99,10 @@
 	<div class="container-fluid">
 		<div class="card card-body" style="background: #3b47a1">
 			<div class="row">
-				<div class="col ld-flex justify-content-center" data-tilt>
+				<div class="col-12 col-md-6 d-flex col ld-flex justify-content-center" data-tilt>
 					<img src="{% static 'images/login.png' %}" alt="IMG" width="75%" height="" />
 				</div>
-				<div class="col d-flex justify-content-center">
+				<div class="col-12 col-md-6 d-flex col d-flex justify-content-center">
 					<div class="user_card">
 						<div class="d-flex justify-content-center">
 							<h3 id="form-title">LOGIN</h3>
@@ -127,7 +134,7 @@
 						</div>
 						
 						{% for message in messages %}
-							<p id="messages" style="background-color: #3B47A1;" class="rounded">{{message}}</p>
+							<p id="messages" class="rounded">{{message}}</p>
 						{% endfor %}
 
 						<div class="mt-4">

@@ -7,9 +7,9 @@
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>Customer:</h5>
+			<h5>Customer: {{ customer.name }}</h5>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'account' %}">Update Customer</a>
 			<!-- <a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a> -->
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'createOrder' customer.id %}">Place Order</a>
 

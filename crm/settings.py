@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'django_filters',
     'qr_code',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
