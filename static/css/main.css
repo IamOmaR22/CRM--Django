@@ -7,14 +7,17 @@ body{
 
 
 #total-orders{
-  background-color: #4F868C;
+  background-color: #543b79;
+  /* background-color: #4F868C; */
 }
 
 
 #orders-delivered{
-  background-color: #4cb4c7;
+  background-color: #4d2e7c;
+  /* background-color: #4cb4c7; */
 }
 
 #orders-pending{
-  background-color: #7CD1C0;
+  background-color: #3f1f6f;
+  /* background-color: #7CD1C0; */
 }
