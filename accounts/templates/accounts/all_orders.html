@@ -1,0 +1,39 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+            <div class="col-1"></div>
+			<div class="col-md-10">
+				<div class="card card-body">
+					<h5>Products</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+                            <th>Product</th>
+                            <th>Date Orderd</th>
+                            <th>Status</th>
+                            <th>Update</th>
+                            <th>Remove</th>
+                        </tr>
+        
+                        {% for order in orders %}
+                            <tr>
+                                <td>{{ order.product }}</td>
+                                <td>{{ order.date_created }}</td>
+                                <td>{{ order.status }}</td>
+                                <td><a class="btn btn-sm btn-info" href="{% url 'updateOrder' order.id %}"><i class="fa fa-edit"> Update</i></a></td> <!-- i can use order.pk instead of order.id -->
+                                <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}"><i class="fa fa-trash"> Remove</i></a></td>
+                            </tr>
+                        {% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+{% endblock content %}

@@ -6,10 +6,29 @@
     color: #fff;
     margin-right: 20px;
   }
+  .logo img {
+  width: 75px;
+  height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .logo img {
+    width: 70px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .logo img {
+    width: 50px;
+    height: 18px;
+  }
+}
+
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3B47A1;">
+  <a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.png' %}" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -35,13 +54,13 @@
   <span>
   <div class="container">
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#myModal">Source Code</button>
+    <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#myModal">ZoTech Software </button>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-body">
-            {% qr_from_text "https://github.com/IamOmaR22/Django_CRM" size=18 border=5 %}
+            {% qr_from_text "https://zoeloe27.pythonanywhere.com/" size=18 border=5 %}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

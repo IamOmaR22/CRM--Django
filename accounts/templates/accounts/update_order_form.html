@@ -1,0 +1,38 @@
+{% extends 'accounts/main.html' %}
+
+{% load bootstrap4 %}
+
+{% load static %}
+
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card card-body">
+
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {% comment %}
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {{ form }}
+                    <hr>
+                {% endfor %}
+                {% endcomment %}
+
+                {{ formset.management_form }}
+                {% bootstrap_form form %}
+                <hr>
+
+                <input type="submit" class="btn btn-primary" value="Update">
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

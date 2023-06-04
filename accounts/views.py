@@ -15,6 +15,7 @@ from django.contrib.auth.models import Group # Django signal to associated user 
 @login_required(login_url='login')
 @admin_only # if customer the redirect to user-page and if admin redirect to view_func
 def home(request):
+    last_five_orders = Order.objects.all().order_by('-date_created')[:5]
     orders = Order.objects.all()
     customers = Customer.objects.all()
 
@@ -25,6 +26,7 @@ def home(request):
     pending = orders.filter(status='Pending').count()
 
     context = {
+        'last_five_orders':last_five_orders,
         'orders':orders,
         'customers':customers,
         'total_customers':total_customers,
@@ -34,6 +36,16 @@ def home(request):
     }
 
     return render(request, 'accounts/dashboard.html', context)
+
+@login_required(login_url='login')
+@admin_only # if customer the redirect to user-page and if admin redirect to view_func
+def allOrders(request):
+    orders = Order.objects.all()
+    context = {
+        'orders':orders,
+    }
+
+    return render(request, 'accounts/all_orders.html', context)
 
 
 @login_required(login_url='login')
@@ -68,7 +80,7 @@ def customer(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin']) # we can add more like - ['admin', 'staff', etc]
 def createOrder(request, pk):
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10) # Parent model and Child model
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=3) # Parent model and Child model. extra=3 means you will see three times form to place order 3 items together. You can use extra=10 or extra=5 as you wish.
     customer = Customer.objects.get(id=pk)
 
     formset = OrderFormSet(queryset=Order.objects.none(), instance=customer)
@@ -100,7 +112,7 @@ def updateOrder(request, pk):
             return redirect('home')
 
     context = {'form':form}
-    return render(request, 'accounts/order_form.html', context)
+    return render(request, 'accounts/update_order_form.html', context)
 
 
 @login_required(login_url='login')

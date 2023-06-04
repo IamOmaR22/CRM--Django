@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="col-md-5">
-		<h5>CUSTOMERS:</h5>
+		<h5 class="ml-3">CUSTOMERS</h5>
 		<hr>
 		<div class="card card-body">
 			<a class="btn btn-primary  btn-sm btn-block" href="">Create Customer</a>
@@ -45,7 +45,7 @@
 					<th>Remove</th>
 				</tr>
 
-				{% for order in orders %}
+				{% for order in last_five_orders %}
 					<tr>
 						<td>{{ order.product }}</td>
 						<td>{{ order.date_created }}</td>
@@ -54,6 +54,7 @@
 						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}"><i class="fa fa-trash"> Remove</i></a></td>
 					</tr>
 				{% endfor %}
+				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'allOrders' %}">All Orders</a>
 
 			</table>
 		</div>

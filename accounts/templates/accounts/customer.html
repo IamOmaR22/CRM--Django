@@ -1,5 +1,7 @@
 {%  extends 'accounts/main.html' %}
 
+{% load bootstrap4 %}
+
 {% block content %}
 
 	<br>
@@ -9,7 +11,7 @@
 		<div class="card card-body">
 			<h5>Customer: {{ customer.name }}</h5>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'account' %}">Update Customer</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
 			<!-- <a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a> -->
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'createOrder' customer.id %}">Place Order</a>
 
@@ -17,7 +19,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body bg-info text-light">
 			<h5>Contact Information</h5>
 			<hr>
 			<p>Email: {{ customer.email }}</p>
@@ -26,7 +28,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body bg-secondary text-light">
 			<h5>Total Orders</h5>
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{ order_count }}</h1>
@@ -42,6 +44,7 @@
 
 			<form method="get">
 					{{ myFilter.form }}
+					<!-- {% bootstrap_form myFilter.form %} -->
 		    <button class="btn btn-primary" type="submit">Search</button>
 		  </form>
 
