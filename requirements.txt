@@ -1,11 +1,14 @@
 asgiref==3.5.1
 backports.zoneinfo==0.2.1
+beautifulsoup4==4.12.2
 colorama==0.4.4
 Django==4.0.4
+django-bootstrap4==23.1
 django-filter==21.1
 django-qr-code==3.0.0
 Pillow==9.1.0
 qrcode==7.3.1
 segno==1.4.1
+soupsieve==2.4.1
 sqlparse==0.4.2
 tzdata==2022.1
