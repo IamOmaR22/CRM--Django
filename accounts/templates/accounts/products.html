@@ -2,34 +2,34 @@
 
 {% block content %}
 
-		<br>
+<br>
 
-		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<div class="card card-body">
-					<h5>Products</h5>
-				</div>
-				<div class="card card-body">
-					<table class="table">
-						<tr>
-							<th>Product</th>
-							<th>Category</th>
-							<th>Price</th>
-						</tr>
-
-						{% for i in products %}
-							<tr>
-								<td>{{ i.name }}</td>  <!-- name, category, price from models -->
-								<td>{{ i.category }}</td>
-								<td>{{ i.price }}</td>
-							</tr>
-						{% endfor %}
-
-					</table>
-				</div>
-			</div>
-
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<div class="card card-body" style="background-color: #4d2e7c; color: whitesmoke; text-align: center;">
+			<h5>Products</h5>
 		</div>
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Product</th>
+					<th>Category</th>
+					<th>Price</th>
+				</tr>
+
+				{% for i in products %}
+				<tr>
+					<td>{{ i.name }}</td> <!-- name, category, price from models -->
+					<td>{{ i.category }}</td>
+					<td>{{ i.price }}</td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+</div>
 
 {% endblock content %}

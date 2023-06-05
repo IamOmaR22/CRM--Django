@@ -54,7 +54,8 @@
 						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}"><i class="fa fa-trash"> Remove</i></a></td>
 					</tr>
 				{% endfor %}
-				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'allOrders' %}">All Orders</a>
+				<a class="btn btn-primary btn-sm btn-block" href="{% url 'allOrders' %}">All Orders</a>
+				<!-- <a class="btn btn-sm btn-block" href="{% url 'allOrders' %}" style="background-color: #4d2e7c; color: whitesmoke;">All Orders</a> -->
 
 			</table>
 		</div>
